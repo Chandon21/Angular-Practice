@@ -1,0 +1,9 @@
+<h2>Task List</h2>
+<div *ngFor="let task of tasks">
+  <app-task-item 
+    [task]="task" 
+    (toggle)="toggleComplete(task.id)" 
+    (delete)="deleteTask(task.id)">
+  </app-task-item>
+</div>
+

@@ -1,0 +1,5 @@
+<div [appHighlight]="task.completed ? 'lightgreen' : 'white'">
+  <input type="checkbox" [checked]="task.completed" (change)="toggle.emit()">
+  {{ task.name }}
+  <button (click)="delete.emit()">Delete</button>
+</div>
