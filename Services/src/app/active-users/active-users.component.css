@@ -1,0 +1,5 @@
+.set-inactive {
+  color: red;
+  cursor: pointer;
+  margin-left: 5px; /* small space after | */
+}

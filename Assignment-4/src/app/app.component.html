@@ -1,0 +1,9 @@
+<div>
+  <app-game-controller (numberEmitted)="onNumberEmitted($event)"></app-game-controller>
+
+  <h3>Odd Numbers:</h3>
+  <app-odd *ngFor="let odd of oddNumbers" [number]="odd"></app-odd>
+
+  <h3>Even Numbers:</h3>
+  <app-even *ngFor="let even of evenNumbers" [number]="even"></app-even>
+</div>
