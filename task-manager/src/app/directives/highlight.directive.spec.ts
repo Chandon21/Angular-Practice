@@ -1,8 +1,14 @@
-import { HighlightDirective } from './highlight.directive';
+import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
-describe('HighlightDirective', () => {
-  it('should create an instance', () => {
-    const directive = new HighlightDirective();
-    expect(directive).toBeTruthy();
-  });
-});
+@Directive({
+  selector: '[appHighlight]'
+})
+export class HighlightDirective implements OnInit {
+  @Input() appHighlight = '';
+
+  constructor(private el: ElementRef) {}
+
+  ngOnInit() {
+    this.el.nativeElement.style.backgroundColor = this.appHighlight || 'yellow';
+  }
+}

@@ -1,0 +1,28 @@
+<h2>🌿 Built-in Pipes & Parameters</h2>
+<p>Uppercase + Slice: {{ name | uppercase | slice:0:4 }}</p>
+<p>Currency: {{ price | currency:'USD':'symbol':'1.2-2' }}</p>
+<p>Date: {{ today | date:'fullDate' }}</p>
+
+<hr>
+
+<h2>🧠 Custom Pipe</h2>
+<p>Reverse Name: {{ name | reverse }}</p>
+
+<h2>🔢 Parametrized Custom Pipe</h2>
+<p>Price × 3 = {{ price | multiply:3 }}</p>
+
+<hr>
+
+<h2>🔍 Filter Pipe (Impure)</h2>
+<input [(ngModel)]="searchText" placeholder="Search users" />
+<ul>
+  <li *ngFor="let user of users | filter:searchText">{{ user.name }}</li>
+</ul>
+
+<hr>
+
+<h2>⚙️ Async Pipe</h2>
+<p>Users (will load after 2 seconds):</p>
+<ul>
+  <li *ngFor="let user of users$ | async">{{ user.name }}</li>
+</ul>

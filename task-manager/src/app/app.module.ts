@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';  // <-- import FormsModule
+import { FormsModule } from '@angular/forms'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +22,7 @@ import { HighlightDirective } from './directives/highlight.directive';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule  // <-- add here
+    FormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
