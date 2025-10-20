@@ -7,8 +7,6 @@
     <!-- Username -->
     <label for="username">Username:</label>
     <input id="username" type="text" formControlName="username" placeholder="Enter username">
-    
-    <!-- Async validator feedback -->
     <div *ngIf="registrationForm.get('userData.username')?.pending">
       <small>Checking username availability...</small>
     </div>
@@ -29,10 +27,11 @@
                                 registrationForm.get('userData.email')?.dirty || 
                                 formSubmitted)">
       <small *ngIf="registrationForm.get('userData.email')?.errors?.['required']">Email is required.</small>
-      <small *ngIf="registrationForm.get('userData.email')?.errors?.['strictEmail']">Enter a valid email (e.g., example.com).</small>
+      <small *ngIf="registrationForm.get('userData.email')?.errors?.['strictEmail']">Enter a valid email.</small>
     </div>
-
   </fieldset>
+
+  <hr>
 
   <!-- Gender -->
   <fieldset>
@@ -60,23 +59,39 @@
     <small *ngIf="registrationForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</small>
   </div>
 
-  <!-- Agree -->
-  <label>
-    <input type="checkbox" formControlName="agree"> I agree to terms and conditions
-  </label>
-  <div class="error" *ngIf="registrationForm.get('agree')?.invalid &&
-                               (registrationForm.get('agree')?.touched || formSubmitted)">
-    <small>You must agree before submitting.</small>
-  </div>
+  <hr>
 
   <!-- FormArray: Phones -->
   <div formArrayName="phones">
     <label>Phone Numbers:</label>
-    <div *ngFor="let phone of phones.controls; let i = index">
-      <input [formControlName]="i" placeholder="Enter phone number">
+    <div *ngFor="let phone of phones.controls; let i = index" class="phone-row">
+      <input type="text" [formControlName]="i" placeholder="Enter phone number" maxlength="15">
+
+      <!-- Error message -->
+      <div class="error" *ngIf="phone.invalid && (phone.touched || formSubmitted)">
+        <small *ngIf="phone.errors?.['required']">Phone number is required.</small>
+        <small *ngIf="phone.errors?.['pattern']">Only digits are allowed.</small>
+      </div>
+
+      <!-- Save & Remove buttons -->
+      <button type="button" (click)="savePhone(i)" [disabled]="phone.invalid">Save</button>
       <button type="button" (click)="removePhone(i)" *ngIf="phones.length > 1">Remove</button>
+
+      <!-- Saved indicator -->
+      <span *ngIf="phoneSaved[i]" class="saved-indicator">Saved!</span>
     </div>
+
     <button type="button" (click)="addPhone()">Add Phone</button>
+  </div>
+
+  <hr>
+
+  <!-- Agree -->
+  <label>
+    <input type="checkbox" formControlName="agree"> I agree to terms and conditions
+  </label>
+  <div class="error" *ngIf="registrationForm.get('agree')?.invalid && (registrationForm.get('agree')?.touched || formSubmitted)">
+    <small>You must agree before submitting.</small>
   </div>
 
   <!-- Buttons -->
