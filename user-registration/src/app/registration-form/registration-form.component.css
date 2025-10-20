@@ -1,0 +1,77 @@
+form {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+fieldset {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+legend {
+  font-weight: bold;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 5px;
+  margin-left: 10px;
+}
+
+.error small {
+  color: #d9534f;
+  display: block;
+  margin-top: 2px;
+  font-size: 0.9em;
+}
+
+button {
+  padding: 8px 15px;
+  margin-right: 10px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #a6c8ff;
+  cursor: not-allowed;
+}
+
+.form-buttons {
+  margin-top: 15px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}

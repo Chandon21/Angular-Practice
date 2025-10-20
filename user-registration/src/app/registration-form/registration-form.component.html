@@ -1,0 +1,95 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+  <!-- User Information Group -->
+  <fieldset formGroupName="userData">
+    <legend>User Information</legend>
+
+    <!-- Username -->
+    <label for="username">Username:</label>
+    <input id="username" type="text" formControlName="username" placeholder="Enter username">
+    
+    <!-- Async validator feedback -->
+    <div *ngIf="registrationForm.get('userData.username')?.pending">
+      <small>Checking username availability...</small>
+    </div>
+    <div class="error" *ngIf="registrationForm.get('userData.username')?.invalid &&
+                               (registrationForm.get('userData.username')?.touched || 
+                                registrationForm.get('userData.username')?.dirty || 
+                                formSubmitted)">
+      <small *ngIf="registrationForm.get('userData.username')?.errors?.['required']">Username is required.</small>
+      <small *ngIf="registrationForm.get('userData.username')?.errors?.['minlength']">Minimum 3 characters required.</small>
+      <small *ngIf="registrationForm.get('userData.username')?.errors?.['usernameTaken']">Username is already taken.</small>
+    </div>
+
+    <!-- Email -->
+    <label for="email">Email:</label>
+    <input id="email" type="email" formControlName="email" placeholder="Enter email">
+    <div class="error" *ngIf="registrationForm.get('userData.email')?.invalid &&
+                               (registrationForm.get('userData.email')?.touched || 
+                                registrationForm.get('userData.email')?.dirty || 
+                                formSubmitted)">
+      <small *ngIf="registrationForm.get('userData.email')?.errors?.['required']">Email is required.</small>
+      <small *ngIf="registrationForm.get('userData.email')?.errors?.['strictEmail']">Enter a valid email (e.g., example.com).</small>
+    </div>
+
+  </fieldset>
+
+  <!-- Gender -->
+  <fieldset>
+    <legend>Gender</legend>
+    <label><input type="radio" formControlName="gender" value="male"> Male</label>
+    <label><input type="radio" formControlName="gender" value="female"> Female</label>
+  </fieldset>
+
+  <!-- Country -->
+  <label for="country">Country:</label>
+  <select id="country" formControlName="country">
+    <option value="bangladesh">Bangladesh</option>
+    <option value="india">India</option>
+    <option value="usa">USA</option>
+  </select>
+
+  <!-- Password -->
+  <label for="password">Password:</label>
+  <input id="password" type="password" formControlName="password" placeholder="Enter password">
+  <div class="error" *ngIf="registrationForm.get('password')?.invalid &&
+                               (registrationForm.get('password')?.touched || 
+                                registrationForm.get('password')?.dirty || 
+                                formSubmitted)">
+    <small *ngIf="registrationForm.get('password')?.errors?.['required']">Password is required.</small>
+    <small *ngIf="registrationForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</small>
+  </div>
+
+  <!-- Agree -->
+  <label>
+    <input type="checkbox" formControlName="agree"> I agree to terms and conditions
+  </label>
+  <div class="error" *ngIf="registrationForm.get('agree')?.invalid &&
+                               (registrationForm.get('agree')?.touched || formSubmitted)">
+    <small>You must agree before submitting.</small>
+  </div>
+
+  <!-- FormArray: Phones -->
+  <div formArrayName="phones">
+    <label>Phone Numbers:</label>
+    <div *ngFor="let phone of phones.controls; let i = index">
+      <input [formControlName]="i" placeholder="Enter phone number">
+      <button type="button" (click)="removePhone(i)" *ngIf="phones.length > 1">Remove</button>
+    </div>
+    <button type="button" (click)="addPhone()">Add Phone</button>
+  </div>
+
+  <!-- Buttons -->
+  <div class="form-buttons">
+    <button type="submit" [disabled]="registrationForm.invalid">Submit</button>
+    <button type="button" (click)="patchCountry()">Patch Country & Email</button>
+    <button type="button" (click)="registrationForm.reset({ gender: 'male', country: 'bangladesh', phones: [''] }); formSubmitted=false;">Reset</button>
+  </div>
+
+</form>
+
+<!-- Display submitted data -->
+<div *ngIf="submittedData">
+  <h3>Submitted Data</h3>
+  <pre>{{ submittedData | json }}</pre>
+</div>
