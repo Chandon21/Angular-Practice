@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>📋 Firebase Task Manager</h2>
+
+  <div class="input-section">
+    <input [(ngModel)]="title" placeholder="Task Title" />
+    <textarea [(ngModel)]="details" placeholder="Task Details"></textarea>
+    <button (click)="onAddTask()">Add Task</button>
+  </div>
+
+  <div class="action-buttons">
+    <button (click)="fetchTasks()">Fetch Tasks</button>
+    <button (click)="onClearTasks()">Clear Tasks</button>
+  </div>
+
+  <div *ngIf="isLoading">Loading tasks...</div>
+
+  <ul *ngIf="!isLoading && tasks.length > 0">
+    <li *ngFor="let task of tasks">
+      <h3>{{ task.title }}</h3>
+      <p>{{ task.details }}</p>
+    </li>
+  </ul>
+
+  <p *ngIf="!isLoading && tasks.length === 0">No tasks found.</p>
+</div>
