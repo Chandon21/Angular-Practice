@@ -24,7 +24,7 @@ export class AppComponent {
     this.taskService.addTask(newTask).subscribe(() => {
       this.title = '';
       this.details = '';
-      this.fetchTasks(); // refresh list
+     // this.fetchTasks(); // refresh list
     });
   }
 
