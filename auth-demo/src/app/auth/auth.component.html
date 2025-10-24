@@ -1,0 +1,16 @@
+<div class="auth-container">
+  <h2>{{ isLoginMode ? 'Login' : 'Sign Up' }}</h2>
+
+  <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+    <input type="email" name="email" ngModel required placeholder="Email" />
+    <input type="password" name="password" ngModel required placeholder="Password" />
+
+    <button type="submit">{{ isLoginMode ? 'Login' : 'Sign Up' }}</button>
+  </form>
+
+  <button (click)="onSwitchMode()">
+    Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}
+  </button>
+
+  <p *ngIf="error" style="color: red">{{ error }}</p>
+</div>
