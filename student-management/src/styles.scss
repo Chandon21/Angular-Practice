@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+/* simple global styles */
+body { font-family: Roboto, Arial, sans-serif; margin: 0; }
+.app-container { padding: 16px; }
+.navbar { background: #1976d2; color: white; padding: 10px 16px; display:flex; justify-content:space-between; align-items:center; }
+.card { background: white; border-radius: 8px; padding: 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+.table { width:100%; border-collapse: collapse; }
+.table th, .table td { padding: 8px 10px; border-bottom: 1px solid #eee; }
+.btn { padding: 6px 10px; border-radius: 4px; cursor:pointer; }
+.btn-primary { background:#1976d2; color:white; }
+.btn-danger { background:#e53935; color:white; }
+.form-row { margin-bottom: 10px; }

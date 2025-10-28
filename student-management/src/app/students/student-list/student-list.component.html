@@ -1,0 +1,36 @@
+<div class="app-container">
+<div class="navbar">
+<div>Student Management</div>
+<div>
+<button class="btn" (click)="onAdd()">Add Student</button>
+</div>
+</div>
+
+
+<div style="margin-top:16px" class="card">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+<h3>Students</h3>
+<input placeholder="Search" [(ngModel)]="filter">
+</div>
+
+
+<table class="table">
+<thead>
+<tr><th>Name</th><th>Email</th><th>Department</th><th>Roll</th><th>Actions</th></tr>
+</thead>
+<tbody>
+<tr *ngFor="let s of filtered()">
+<td>{{s.name}}</td>
+<td>{{s.email}}</td>
+<td>{{s.department}}</td>
+<td>{{s.roll}}</td>
+<td>
+<button class="btn" (click)="onEdit(s.id)">Edit</button>
+<button class="btn btn-danger" (click)="onDelete(s.id)">Delete</button>
+</td>
+</tr>
+<tr *ngIf="students.length === 0"><td colspan="5" style="text-align:center">No students yet</td></tr>
+</tbody>
+</table>
+</div>
+</div>
