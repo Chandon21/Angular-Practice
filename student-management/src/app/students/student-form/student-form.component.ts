@@ -37,4 +37,9 @@ export class StudentFormComponent implements OnInit {
     }
     this.router.navigate(['/students']);
   }
+
+  
+  cancel(): void {
+    this.router.navigate(['/students']);
+  }
 }

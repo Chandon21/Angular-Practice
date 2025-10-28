@@ -1,42 +1,59 @@
-<div class="app-container">
-  <h2>{{ editMode ? 'Edit Student' : 'Add New Student' }}</h2>
-
-  <form (ngSubmit)="onSubmit()" #studentForm="ngForm">
-    <div>
-      <label for="name">Name</label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        [(ngModel)]="student.name"
-        required
-      />
+<div class="student-form-container">
+  <div class="card shadow-sm">
+    <div class="card-header">
+      <h3>{{ editMode ? 'Edit Student' : 'Add New Student' }}</h3>
     </div>
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" #studentForm="ngForm">
 
-    <div>
-      <label for="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        [(ngModel)]="student.email"
-        required
-      />
+        <!-- Name -->
+        <div class="form-group mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            placeholder="Enter full name"
+            [(ngModel)]="student.name"
+            name="name"
+            required
+          >
+        </div>
+
+        <!-- Email -->
+        <div class="form-group mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            placeholder="Enter email address"
+            [(ngModel)]="student.email"
+            name="email"
+            required
+          >
+        </div>
+
+        <!-- Course -->
+        <div class="form-group mb-3">
+          <label for="course" class="form-label">Course</label>
+          <input
+            type="text"
+            id="course"
+            class="form-control"
+            placeholder="Enter course name"
+            [(ngModel)]="student.course"
+            name="course"
+            required
+          >
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-end mt-4">
+          <button type="submit" class="btn btn-primary me-2">{{ editMode ? 'Update' : 'Save' }}</button>
+          <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+        </div>
+      </form>
     </div>
-
-    <div>
-      <label for="course">Course</label>
-      <input
-        type="text"
-        id="course"
-        name="course"
-        [(ngModel)]="student.course"
-        required
-      />
-    </div>
-
-    <button type="submit" [disabled]="!studentForm.valid">
-      {{ editMode ? 'Update' : 'Save' }}
-    </button>
-  </form>
+  </div>
 </div>
