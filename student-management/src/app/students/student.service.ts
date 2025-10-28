@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Student } from '../shared/models/student.model';
-//import { Student } from 'src/app/shared/models/student.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -8,8 +7,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class StudentService {
   private students: Student[] = [
-    { id: 1, name: 'Alice', email: 'alice@gmail.com', course: 'Angular' },
-    { id: 2, name: 'Bob', email: 'bob@gmail.com', course: 'React' }
+    { id: 1, name: 'Alice', email: 'alice@gmail.com', department: 'CSE',  course: 'Angular', skills: ['HTML','CSS'] },
+    { id: 2, name: 'Bob', email: 'bob@gmail.com', department: 'ECE', course: 'React', skills: ['JS','React'] }
   ];
 
   private studentSubject = new BehaviorSubject<Student[]>(this.students);

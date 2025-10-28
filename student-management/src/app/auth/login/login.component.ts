@@ -1,21 +1,18 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  username = '';
+  email = '';
   password = '';
 
-  constructor(private router: Router) {}
+  constructor(private auth: AuthService) {}
 
-  login() {
-    if (this.username === 'admin' && this.password === '1234') {
-      this.router.navigate(['/students']);
-    } else {
-      alert('Invalid credentials');
-    }
+  onLogin() {
+    this.auth.login(this.email, this.password);
   }
 }

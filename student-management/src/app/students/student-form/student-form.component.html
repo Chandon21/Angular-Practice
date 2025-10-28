@@ -1,59 +1,65 @@
-<div class="student-form-container">
-  <div class="card shadow-sm">
-    <div class="card-header">
-      <h3>{{ editMode ? 'Edit Student' : 'Add New Student' }}</h3>
-    </div>
-    <div class="card-body">
-      <form (ngSubmit)="onSubmit()" #studentForm="ngForm">
+<div class="container my-4">
+  <div class="card shadow-sm p-4 mx-auto" style="max-width: 800px;">
+    <h2 class="mb-4 text-center">{{ editMode ? 'Edit Student' : 'Add New Student' }}</h2>
 
-        <!-- Name -->
-        <div class="form-group mb-3">
-          <label for="name" class="form-label">Name</label>
-          <input
-            type="text"
-            id="name"
-            class="form-control"
-            placeholder="Enter full name"
-            [(ngModel)]="student.name"
-            name="name"
-            required
-          >
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+
+      <!-- Personal Info -->
+      <div formGroupName="personal" class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" formControlName="name" />
+          <small class="text-danger" *ngIf="studentForm.get('personal.name')?.touched && studentForm.get('personal.name')?.invalid">
+            Name is required
+          </small>
         </div>
 
-        <!-- Email -->
-        <div class="form-group mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input
-            type="email"
-            id="email"
-            class="form-control"
-            placeholder="Enter email address"
-            [(ngModel)]="student.email"
-            name="email"
-            required
-          >
+        <div class="col-md-6">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" formControlName="email" />
+          <small class="text-danger" *ngIf="studentForm.get('personal.email')?.touched && studentForm.get('personal.email')?.invalid">
+            Enter a valid email
+          </small>
         </div>
 
-        <!-- Course -->
-        <div class="form-group mb-3">
-          <label for="course" class="form-label">Course</label>
-          <input
-            type="text"
-            id="course"
-            class="form-control"
-            placeholder="Enter course name"
-            [(ngModel)]="student.course"
-            name="course"
-            required
-          >
+        <div class="col-md-6">
+          <label class="form-label">Department</label>
+          <input type="text" class="form-control" formControlName="department" />
         </div>
 
-        <!-- Buttons -->
-        <div class="d-flex justify-content-end mt-4">
-          <button type="submit" class="btn btn-primary me-2">{{ editMode ? 'Update' : 'Save' }}</button>
-          <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+       
+      </div>
+
+      <!-- Course -->
+      <div class="mb-3 mt-3">
+        <label class="form-label">Course</label>
+        <input type="text" class="form-control" formControlName="course" />
+        <small class="text-danger" *ngIf="studentForm.get('course')?.touched && studentForm.get('course')?.invalid">
+          Course is required
+        </small>
+      </div>
+
+      <!-- Skills FormArray -->
+      <div formArrayName="skills" class="mb-3">
+        <label class="form-label">Skills</label>
+        <div *ngFor="let skill of skills.controls; let i=index" class="input-group mb-2">
+          <input type="text" class="form-control" [formControlName]="i" placeholder="Skill" />
+          <button type="button" class="btn btn-outline-danger" (click)="removeSkill(i)">Remove</button>
         </div>
-      </form>
-    </div>
+        <button type="button" class="btn btn-outline-primary" (click)="addSkill()">Add Skill</button>
+      </div>
+
+      <!-- Buttons -->
+      <div class="mt-4 d-flex justify-content-between">
+        <div>
+          <button type="submit" class="btn btn-primary">{{ editMode ? 'Update' : 'Save' }}</button>
+          <button type="button" class="btn btn-secondary ms-2" (click)="cancel()">Cancel</button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-warning me-2" (click)="resetForm()">Reset</button>
+          <button type="button" class="btn btn-info" (click)="setFormExample()">See Example</button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>

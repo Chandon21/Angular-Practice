@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './auth/login/login.component';
@@ -22,6 +23,7 @@ import { StudentFormComponent } from './students/student-form/student-form.compo
     CommonModule,
     FormsModule,
     RouterModule,
+     ReactiveFormsModule,
     AppRoutingModule,
   ],
   providers: [],

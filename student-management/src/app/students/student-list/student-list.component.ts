@@ -14,7 +14,7 @@ export class StudentListComponent implements OnInit {
   constructor(private svc: StudentService, private router: Router) {}
 
   ngOnInit(): void {
-    this.svc.getAll().subscribe(s => this.students = s); // works if getAll() returns Observable
+    this.svc.getAll().subscribe(s => this.students = s);
   }
 
   onAdd() {
@@ -27,7 +27,7 @@ export class StudentListComponent implements OnInit {
 
   onDelete(id: number) {
     if (confirm('Delete this student?')) {
-      this.svc.deleteStudent(+id); // convert string to number
+      this.svc.deleteStudent(id);
     }
   }
 
@@ -35,7 +35,7 @@ export class StudentListComponent implements OnInit {
     const q = this.filter.trim().toLowerCase();
     if (!q) return this.students;
     return this.students.filter(s =>
-      (s.name + ' ' + s.email + ' ' + s.course).toLowerCase().includes(q)
+      (s.id + ' ' + s.name + ' ' + s.email + ' ' + (s.department||'') +  s.course).toLowerCase().includes(q)
     );
   }
 }

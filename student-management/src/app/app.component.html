@@ -1,9 +1,6 @@
-<nav class="navbar">
-  <a routerLink="/login">Login</a>
-  <a routerLink="/students">Students</a>
- 
-</nav>
-
-<div class="container">
-  <router-outlet></router-outlet>
+<div class="navbar" *ngIf="auth.isAuthenticated()">
+  <div>Student Management</div>
+  <button class="btn btn-outline-light" (click)="auth.logout()">Logout</button>
 </div>
+
+<router-outlet></router-outlet>

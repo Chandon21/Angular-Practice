@@ -1,44 +1,46 @@
 <div class="app-container">
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">Student Management</div>
+  <div class="navbar d-flex justify-content-between align-items-center">
+    <div>Student Management</div>
     <div>
       <button class="btn btn-primary" (click)="onAdd()">Add Student</button>
     </div>
-  </nav>
+  </div>
 
-  <!-- Main Card -->
-  <div class="card mt-4">
-    <div class="card-header d-flex justify-content-between align-items-center">
+  <div class="card p-3 mt-3">
+    <div class="d-flex justify-content-between align-items-center mb-2">
       <h3>Students</h3>
-      <input type="text" class="form-control search-input" placeholder="Search" [(ngModel)]="filter">
+      <input placeholder="Search" [(ngModel)]="filter" class="form-control w-25" />
     </div>
 
-    <div class="card-body p-0">
-      <table class="table table-hover mb-0">
-        <thead class="thead-light">
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Course</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let s of filtered()">
-            <td>{{s.name}}</td>
-            <td>{{s.email}}</td>
-            <td>{{s.course}}</td>
-            <td>
-              <button class="btn btn-sm btn-secondary me-2" (click)="onEdit(s.id)">Edit</button>
-              <button class="btn btn-sm btn-danger" (click)="onDelete(s.id)">Delete</button>
-            </td>
-          </tr>
-          <tr *ngIf="students.length === 0">
-            <td colspan="4" class="text-center">No students yet</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Course</th>
+          <th>Skills</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of filtered()">
+          <td>{{s.id}}</td>
+          <td>{{s.name}}</td>
+          <td>{{s.email}}</td>
+          <td>{{s.department}}</td>
+          <td>{{s.course}}</td>
+          <td>{{s.skills?.join(', ')}}</td>
+          <td>
+            <button class="btn btn-sm btn-primary me-2" (click)="onEdit(s.id)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="onDelete(s.id)">Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="students.length === 0">
+          <td colspan="8" class="text-center">No students yet</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
