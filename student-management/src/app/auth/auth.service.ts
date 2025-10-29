@@ -27,7 +27,7 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  // ✅ Make sure this method exists
+  
   isAuthenticated(): boolean {
     return this.loggedIn || localStorage.getItem('loggedIn') === 'true';
   }
