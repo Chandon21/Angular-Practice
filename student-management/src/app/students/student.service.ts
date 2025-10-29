@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class StudentService {
   private students: Student[] = [
-    { id: 1, name: 'Chandan', email: 'chandan@gmail.com', department: 'CSE',  course: 'Angular', skills: ['HTML','CSS'] },
+    { id: 1, name: 'Chandan', email: 'chandan@gmail.com', department: 'CSE',  course: 'Angular', skills: ['HTML','CSS','JavaScript','TypeScript'] },
     { id: 2, name: 'Soumik', email: 'soumik@gmail.com', department: 'ECE', course: 'React', skills: ['JS','React'] },
     { id: 3, name: 'Robin', email: 'robin@gmail.com', department: 'IT', course: 'Node.js', skills: ['JavaScript', 'Express', 'MongoDB'] },
     { id: 4, name: 'Ashique', email: 'ashique@gmail.com', department: 'CSE', course: 'Python', skills: ['Python', 'Django', 'SQL'] },
