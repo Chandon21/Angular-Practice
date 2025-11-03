@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { StudentService } from '../student.service';
 import { Student } from '../../shared/models/student.model';
 
-
 @Component({
   selector: 'app-student-list',
   templateUrl: './student-list.component.html',
@@ -18,7 +17,7 @@ export class StudentListComponent implements OnInit {
   totalPages = 1;
 
   constructor(
-    private svc: StudentService,
+    private studentService: StudentService,     
     public router: Router,
     private route: ActivatedRoute
   ) {}
@@ -32,7 +31,7 @@ export class StudentListComponent implements OnInit {
   }
 
   loadStudents(): void {
-    this.svc.getAll().subscribe(students => {
+    this.studentService.getAll().subscribe(students => {  
       this.allStudents = students;
       this.applyFilter();
     });
@@ -76,10 +75,10 @@ export class StudentListComponent implements OnInit {
       queryParamsHandling: 'merge'
     });
   }
-// Add this method inside your StudentListComponent class
-   onAdd(): void {
-  this.router.navigate(['/students/add']);
-}
+
+  onAdd(): void {
+    this.router.navigate(['/students/add']);
+  }
 
   onEdit(id: number) {
     this.router.navigate(['/students', id, 'edit']);
@@ -87,7 +86,7 @@ export class StudentListComponent implements OnInit {
 
   onDelete(id: number) {
     if (confirm('Are you sure you want to delete this student?')) {
-      this.svc.deleteStudent(id);
+      this.studentService.deleteStudent(id);   
       this.loadStudents();
     }
   }
